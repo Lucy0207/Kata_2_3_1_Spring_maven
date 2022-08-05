@@ -51,4 +51,5 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         return new Filter[]{characterEncodingFilter};
     }
 
+
 }

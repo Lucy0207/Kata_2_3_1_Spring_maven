@@ -38,7 +38,7 @@ public class HibernateConfig {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setJpaVendorAdapter(jpaVendorAdapter());
         em.setDataSource(dataSource());
-        em.setPackagesToScan("testweb");
+        em.setPackagesToScan("web");
         em.setJpaProperties(hibernateProperties());
         return em;
     }
