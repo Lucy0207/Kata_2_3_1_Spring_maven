@@ -27,10 +27,7 @@ public class UserController {
     }
 
     @PostMapping
-    public String addUser(@ModelAttribute("user") User user,
-                          @RequestParam("name") String name,
-                          @RequestParam("age") int age,
-                          @RequestParam("email") String email) {
+    public String addUser(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/";
     }
@@ -47,9 +44,10 @@ public class UserController {
         return "editUser";
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        userService.edit(user);
+        userService.edit(id, user);
         return "redirect:/";
     }
+
 }

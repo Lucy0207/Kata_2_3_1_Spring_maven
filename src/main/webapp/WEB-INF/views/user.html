@@ -4,45 +4,184 @@
 <head>
     <meta charset="UTF-8">
     <title>User list</title>
+    <style>
+        input[type=text] {
+            padding: 5px;
+            border: 2px solid #ccc;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        input[type=text]:focus {
+            border-color: #333;
+        }
+
+        input[type=submit] {
+            background: linear-gradient(to top, #55EFCB 0%, #5BCAFF 100%);
+            height: 100%;
+            text-decoration: none;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, .4);
+            -webkit-border-radius: 5px;
+            font-weight: 300;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        input[type=reset] {
+            background: linear-gradient(to top, #55EFCB 0%, #5BCAFF 100%);
+            height: 100%;
+            text-decoration: none;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, .4);
+            -webkit-border-radius: 5px;
+            font-weight: 300;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .container-3 a {
+            position: relative;
+            text-decoration: none;
+            color: #337AB7;
+            display: inline-block;
+        }
+
+        .container-3 a::before,
+        .container-3 a::after {
+            content: '';
+            position: absolute;
+            transition: transform .5s ease;
+            left: -4px;
+            top: 0;
+            width: calc(100% + 8px);
+            height: 100%;
+            border-style: solid;
+            border-color: #337AB7;
+            box-sizing: border-box;
+        }
+
+        .container-3 a::before {
+            border-width: 1px 0 1px 0;
+            transform: scaleX(0);
+        }
+
+        .container-3 a::after {
+            border-width: 0 1px 0 1px;
+            transform: scaleY(0);
+        }
+
+        .container-3 a:hover::before,
+        .container-3 a:hover::after {
+            transform: scale(1, 1);
+        }
+
+        .datagrid table {
+            border-collapse: collapse;
+            text-align: left;
+            width: 100%;
+        }
+
+        .datagrid {
+            font: normal 12px/150% Arial, Helvetica, sans-serif;
+            background: #fff;
+            overflow: hidden;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        .datagrid table td, .datagrid table th {
+            padding: 10px 5px;
+        }
+
+        .datagrid table thead th {
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F));
+            background: -moz-linear-gradient(center top, #006699 5%, #00557F 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
+            background-color: #006699;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: bold;
+            border-left: 1px solid #0070A8;
+        }
+
+        .datagrid table thead th:first-child {
+            border: none;
+        }
+
+        .datagrid table tbody td {
+            color: #00557F;
+            border-left: 2px solid #E1EEF4;
+            font-size: 15px;
+            font-weight: normal;
+        }
+
+        .datagrid table tbody .alt td {
+            background: #E1EEf4;
+            color: #00557F;
+        }
+
+        .datagrid table tbody td:first-child {
+            border-left: none;
+        }
+
+        .datagrid table tbody tr:last-child td {
+            border-bottom: none;
+
+        }</style>
 </head>
 <body>
-<h1>User list</h1>
-<div>
+<h1 style="font-weight: 300; color: #00557F;
+             text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;">User list</h1>
+<div class="datagrid">
     <table>
+        <thead>
         <tr>
             <th>Name</th>
             <th>Age</th>
             <th>Email</th>
+            <th></th>
+            <th></th>
         </tr>
+        </thead>
+        <tbody>
         <tr th:each="msg : ${userList}">
-            <th th:text="${msg.getName()}"></th>
-            <th th:text="${msg.getAge()}"></th>
-            <th th:text="${msg.getEmail()}"></th>
+            <td th:text="${msg.getName()}"></td>
+            <td th:text="${msg.getAge()}"></td>
+            <td th:text="${msg.getEmail()}"></td>
             <td>
-
-                <a th:href="@{/{id}/edit(id=${msg.getId()})}">Edit</a>
+                <div class="container-3"><h3>
+                    <a th:href="@{/{id}/edit(id=${msg.getId()})}">Edit</a></h3></div>
             </td>
             <td>
-                <a th:href="@{/{id}/delete(id=${msg.getId()})}">Delete</a>
+                <div class="container-3"><h3>
+                    <a th:href="@{/{id}/delete(id=${msg.getId()})}">Delete</a></h3></div>
             </td>
 
         </tr>
+
+        <form method="post" action="/">
+            <tr>
+                <td>
+                    <input name="name" type="text" size="40"></td>
+                <td>
+                    <input name="age" type="text" size="40"></td>
+                <td>
+                    <input name="email" type="text" size="40"></td>
+                <td><input type="submit" value="Add">
+
+                    <input type="reset" value="Clear"></td>
+            </tr>
+
+        </form>
+        </tbody>
     </table>
-
-    <form method="post" action="/">
-        <p>
-            <input name="name" type="text" size="40">
-        </p>
-        <p>
-            <input name="age" type="text" size="40">
-        </p>
-        <p>
-            <input name="email" type="text" size="40">
-        </p>
-        <p><input type="submit" value="Add">
-            <input type="reset" value="Clear"></p>
-    </form>
-
 </div>
 </body>
 </html>

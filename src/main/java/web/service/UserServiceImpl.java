@@ -1,13 +1,9 @@
 package web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
-
-
-import javax.validation.Valid;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import web.dao.UserDao;
 import web.models.User;
@@ -23,13 +19,12 @@ public class UserServiceImpl implements UserService {
         this.userDAO = userDAO;
     }
 
-    @Transactional
     @Override
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
 
-
+    @Transactional
     @Override
     public void add(User user) {
         userDAO.add(user);
@@ -43,8 +38,12 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void edit(@Valid User user) {
-        userDAO.edit(user);
+    public void edit(int id, User editUser ) {
+        User updatedUser = getAllUsers().stream().filter(user -> user.getId() == id).findAny().orElse(null);
+        updatedUser.setName(editUser.getName());
+        updatedUser.setAge(editUser.getAge());
+        updatedUser.setEmail(editUser.getEmail());
+//        userDAO.edit(user);
     }
 
     @Override
