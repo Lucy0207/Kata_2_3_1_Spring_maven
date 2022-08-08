@@ -4,16 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Editor</title>
+    <style>
+        input[type=text] {
+            margin-left: 5px;
+            padding: 10px 10px 10px 5px;
+        }
+
+
+        input, label {
+            margin-top: 10px;
+        }
+
+        label {
+            font-size: 12px;
+            font-family:"Helvetica";
+        }
+
+        input[type=text] {
+        padding: 5px;
+        border: 2px solid #ccc;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    input[type=text]:focus {
+        border-color: #333;
+    }
+
+    input[type=submit] {
+        background: linear-gradient(to top, #55EFCB 0%, #5BCAFF 100%);
+        height: 100%;
+        text-decoration: none;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, .4);
+        -webkit-border-radius: 5px;
+        font-weight: 300;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+        .labeltext
+        {font-weight: 300; color: #00557F;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            display: inline-block;
+            letter-spacing: 2px;
+        }
+
+   </style>
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name">
+    <label for="name" class="labeltext" >Enter name: </label>
+    <input type="text" th:field="*{name}" id="name" style="">
     <br>
-    <label for="name">Enter age: </label>
+    <label for="name" class="labeltext">Enter age:</label>
     <input type="text" th:field="*{age}" id="age">
     <br>
-    <label for="name">Enter email: </label>
+    <label for="name" class="labeltext">Enter email: </label>
     <input type="text" th:field="*{email}" id="email">
     <br>
     <input type="submit" value="Update"/>
