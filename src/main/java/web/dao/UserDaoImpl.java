@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao {
         entityManager.remove(entityManager.find(User.class, id));
     }
 
-    public void edit(User user) {
+    public void edit(int id, User user) {
         entityManager.merge(user);
     }
 

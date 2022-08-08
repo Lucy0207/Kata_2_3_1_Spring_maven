@@ -38,12 +38,8 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public void edit(int id, User editUser ) {
-        User updatedUser = getAllUsers().stream().filter(user -> user.getId() == id).findAny().orElse(null);
-        updatedUser.setName(editUser.getName());
-        updatedUser.setAge(editUser.getAge());
-        updatedUser.setEmail(editUser.getEmail());
-//        userDAO.edit(user);
+    public void edit(int id, User editUser) {
+        userDAO.edit(id, editUser);
     }
 
     @Override
