@@ -16,31 +16,67 @@
             border-color: #333;
         }
 
-        input[type=submit] {
-            background: linear-gradient(to top, #55EFCB 0%, #5BCAFF 100%);
-            height: 100%;
+        h3 {
+            text-align: center;
+        }
+
+        button {
+            width: 90px;
+            height: 40px;
             text-decoration: none;
+            display: inline-block;
+            padding: 10px 20px;
+            margin-left: 25px;
+            position: relative;
             color: white;
             border: 1px solid rgba(255, 255, 255, .4);
-            -webkit-border-radius: 5px;
+            background: linear-gradient(to top, #55EFCB 0%, #5BCAFF 100%);
             font-weight: 300;
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        input[type=reset] {
-            background: linear-gradient(to top, #55EFCB 0%, #5BCAFF 100%);
-            height: 100%;
-            text-decoration: none;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, .4);
-            -webkit-border-radius: 5px;
-            font-weight: 300;
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        button:before, button:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0;
+            box-sizing: border-box;
         }
+        button:before {
+            bottom: 0;
+            left: 0;
+            border-left: 3px solid white;
+            border-top: 3px solid white;
+            transition: 0s ease opacity .8s, .2s ease width .4s, .2s ease height .6s;
+        }
+
+        button:after {
+            top: 0;
+            right: 0;
+            border-right: 3px solid white;
+            border-bottom: 3px solid white;
+            transition: 0s ease opacity .4s, .2s ease width, .2s ease height .2s;
+        }
+
+        button:hover::before,
+        button:hover::after {
+            height: 100%;
+            width: 100%;
+            opacity: 1;
+        }
+        button:hover::before {
+            transition: 0s ease opacity 0s, .2s ease height, .2s ease width .2s;
+        }
+        button:hover::after {
+            transition: 0s ease opacity .4s, .2s ease height .4s, .2s ease width .6s;
+        }
+        button:hover {
+            background: linear-gradient(to top, #55EFCB 0%, #5BCAFF 100%);
+        }
+
 
         .container-3 a {
             position: relative;
@@ -131,7 +167,8 @@
         .datagrid table tbody tr:last-child td {
             border-bottom: none;
 
-        }</style>
+        }
+    </style>
 </head>
 <body>
 <h1 style="font-weight: 300; color: #00557F;
@@ -174,9 +211,8 @@
                     <input name="age" type="text" size="40"></td>
                 <td>
                     <input name="email" type="text" size="40"></td>
-                <td><input type="submit" value="Add">
-
-                    <input type="reset" value="Clear"></td>
+                <td><button type="submit" value="Add">Add</button></td>
+                <td><button type="reset" value="Clear">Clear</button></td>
             </tr>
 
         </form>
